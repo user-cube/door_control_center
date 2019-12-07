@@ -1,5 +1,7 @@
 from pymongo import MongoClient
 import settings
+import json
+from bson import json_util
 
 class MongoAPI():
     """
@@ -11,6 +13,17 @@ class MongoAPI():
         """
             Constructor.
         """
-        #self.client = MongoClient(settings.FULL_CONN)
-        #self.write = MongoClient(settings.FULL_URL)
-        pass
+        self.client = MongoClient(settings.FULL_CONN)
+        self.acessos = self.client.smartroom.credential
+
+    def getAllCards(self):
+        lista = []
+        for i in self.acessos.find({}, {'_id': False, '_class': False}):
+            lista.append(json.loads(json_util.dumps(i)))
+        return lista
+
+    def getCards(self, home):
+        lista = []
+        for i in self.acessos.find({'home':int(home)}, {'_id': False, '_class':False}):
+            lista.append(json.loads(json_util.dumps(i)))
+        return lista
