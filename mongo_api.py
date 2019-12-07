@@ -11,5 +11,6 @@ class MongoAPI():
         """
             Constructor.
         """
-        self.client = MongoClient(settings.FULL_CONN)
-        self.write = MongoClient(settings.FULL_URL)
+        #self.client = MongoClient(settings.FULL_CONN)
+        #self.write = MongoClient(settings.FULL_URL)
+        pass
