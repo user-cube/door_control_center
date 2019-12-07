@@ -21,6 +21,10 @@ def all():
 def acessos(home):
     return jsonify(mongo.getCards(home=home))
 
+@app.route('/isValid/<home>/<id>')
+def isValid(home, id):
+    return mongo.getSpecificCard(home=home, id=id)
+
 
 if __name__ == '__main__':
     app.run()

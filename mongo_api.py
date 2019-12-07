@@ -27,3 +27,8 @@ class MongoAPI():
         for i in self.acessos.find({'home':int(home)}, {'_id': False, '_class':False}):
             lista.append(json.loads(json_util.dumps(i)))
         return lista
+
+    def getSpecificCard(self, home, id):
+        for i in self.acessos.find({'home': int(home), 'cart_id':id}, {'_id': False, '_class': False}):
+            dict = {i['user'] : i['cart_id']}
+        return dict
